@@ -1,0 +1,25 @@
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.select-container {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #3498db; /* largura, estilo e cor */
+  border-radius: 8px; 
+  margin-right: 10px; 
+}
+
+.switch-container {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #3498db; /* largura, estilo e cor */
+  border-radius: 8px;  
+}
