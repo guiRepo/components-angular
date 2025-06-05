@@ -14,13 +14,17 @@
 .custom-select {
   position: relative;
   width: 100%;
-  border: 1px solid #3f3f56;
+  border: 1px solid #9B98A4;
   border-radius: 6px;
   background-color: #f9f8fa;
   padding: 10px 36px 10px 12px;
   color: #3f3f56;
   cursor: pointer;
   transition: background-color 0.2s;
+}
+.custom-select:hover {
+  background-color: #EBEBF5;
+  border: 1px solid #8080B4;
 }
 
 .custom-select.open {
@@ -30,6 +34,10 @@
 .selected-value {
   font-family: inherit;
   font-size: 14px;
+  color: #3f3f56;
+}
+
+.selected-value:hover {
   color: #3f3f56;
 }
 
@@ -45,6 +53,7 @@
   pointer-events: none;
   color: #3f3f56;
 }
+
 .options-list {
   position: absolute;
   top: calc(100% + 4px);
@@ -78,7 +87,7 @@
 }
 
 .option.selected {
-  background-color: #9b00ff; 
+  background-color: #6976F3; 
   color: white;
 }
 
@@ -93,6 +102,8 @@
   height: 20px;
   visibility: hidden;
   color: white;
+  position: relative;
+  top: -1px;
 }
 
 .icon-check.visible {
