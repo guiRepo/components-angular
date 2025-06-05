@@ -1,1 +1,27 @@
-<div>Select</div>
+<div class="select-container">
+  <label class="label">Select</label>
+
+  <div class="custom-select" [class.open]="isOpen" [class.disabled]="disabled" (click)="toggleDropdown()">
+    <div class="selected-value" [class.placeholder]="!emptyValue">
+      {{ selectedLabel || 'Choose an option' }}
+    </div>
+    <mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
+
+    <ul class="options-list" *ngIf="isOpen">
+      @for(item of listItems; track item.value) {
+        <li
+          class="option"
+          [class.selected]="item.value === emptyValue"
+          (click)="selectOption(item)"
+        >
+        <span class="option-content">
+          @if(item.value === emptyValue) {
+            <mat-icon class="icon-check" [class.visible]="item.value === emptyValue">check</mat-icon>
+          }
+            {{ item.label }}
+        </span>
+        </li>
+      }
+    </ul>
+  </div>
+</div>
