@@ -1,7 +1,7 @@
 <div class="select-container">
   <label class="label">Select</label>
 
-  <div class="custom-select" [class.open]="isOpen" (click)="toggleDropdown()">
+  <div class="custom-select" [class.open]="isOpen" [class.disabled]="disabled" (click)="toggleDropdown()">
     <div class="selected-value" [class.placeholder]="!emptyValue">
       {{ selectedLabel || 'Choose an option' }}
     </div>

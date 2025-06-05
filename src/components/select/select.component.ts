@@ -13,6 +13,8 @@ export class SelectComponent {
 emptyValue: string = '';
 selectedLabel: string = '';
 isOpen: boolean = false;
+disabled: boolean = true;
+
 
 listItems = [
   { value: 'option1', label: 'Option One' },
@@ -23,7 +25,8 @@ listItems = [
 constructor (private elementRef: ElementRef) {}
 
 toggleDropdown() {
-  this.isOpen = !this.isOpen;
+  if(!this.disabled) 
+    this.isOpen = !this.isOpen;
 }
 
 selectOption(item: { value: string; label: string }) {
