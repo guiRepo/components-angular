@@ -11,16 +11,16 @@ export class SwitchComponent {
   @Input() disabled: boolean = false;
   checked: boolean = true;
 
-  toggleSwitch(): void {
+  public toggleSwitch(): void {
     if (this.disabled) return;
     this.checked = !this.checked;
   }
 
-  onKeyDown(event: KeyboardEvent): void {
+  public onKeyDown(event: KeyboardEvent): void {
     if (this.disabled) return;
 
     if (event.key === ' ' || event.key === 'Enter') {
-      event.preventDefault(); // evita scroll com espaço
+      event.preventDefault();
       this.toggleSwitch();
     }
   }

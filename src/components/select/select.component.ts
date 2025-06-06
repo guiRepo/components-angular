@@ -17,19 +17,55 @@ export class SelectComponent {
   @Input() items!: Array<ItemsList>;
   emptyValue: string = '';
   selectedLabel: string = '';
-  isOpen: boolean = false;
+  selectedValue: string | null = null;
+  isOpen = false;
+  focusedIndex = 0;
 
 constructor (private elementRef: ElementRef) {}
 
-  public toggleDropdown(): void {
-    if(!this.disabled) 
-      this.isOpen = !this.isOpen;
+  toggleDropdown() {
+    if (this.disabled) return;
+    this.isOpen = !this.isOpen;
+
+    if (this.isOpen) {
+      this.focusedIndex = this.items.findIndex(item => item.value === this.selectedValue) || 0;
+    }
   }
 
-  public selectOption(item: { value: string; label: string }): void {
-    this.emptyValue = item.value;
+  selectOption(item: { value: string; label: string }) {
+    this.selectedValue = item.value;
     this.selectedLabel = item.label;
     this.isOpen = false;
+  }
+
+  onKeyDown(event: KeyboardEvent) {
+    if (this.disabled) return;
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      if (!this.isOpen) {
+        this.toggleDropdown();
+      } else {
+        const item = this.items[this.focusedIndex];
+        if (item) this.selectOption(item);
+      }
+    } else if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      if (!this.isOpen) {
+        this.toggleDropdown();
+      } else {
+        this.focusedIndex = (this.focusedIndex + 1) % this.items.length;
+      }
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (!this.isOpen) {
+        this.toggleDropdown();
+      } else {
+        this.focusedIndex = (this.focusedIndex - 1 + this.items.length) % this.items.length;
+      }
+    } else if (event.key === 'Escape') {
+      this.isOpen = false;
+    }
   }
 
   @HostListener('document:click', ['$event'])
