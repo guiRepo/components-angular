@@ -1,11 +1,20 @@
 <div class="switch-container">
   <label class="label">Switch</label>
-  <label class="switch" [class.checked]="checked" [class.disabled]="disabled">
-    <input type="checkbox" [(ngModel)]="checked" [disabled]="disabled"/>
-    <span class="slider">
-      @if (checked) {
-        <mat-icon class="icon" mat-icon>check</mat-icon>
-      }
+  <div
+    class="switch"
+    [class.checked]="checked"
+    [class.disabled]="disabled"
+  >
+    <span
+      class="slider"
+      tabindex="0"
+      role="switch"
+      [attr.aria-checked]="checked"
+      [attr.aria-disabled]="disabled"
+      (click)="toggleSwitch()"
+      (keydown)="onKeyDown($event)"
+    >
+    @if(checked) { <mat-icon class="icon">check</mat-icon> }
     </span>
-  </label>
+  </div>
 </div>

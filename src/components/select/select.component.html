@@ -1,26 +1,29 @@
 <div class="select-container">
   <label class="label">Select</label>
 
-  <div 
-    class="custom-select" 
-    [class.open]="isOpen" 
-    [class.disabled]="disabled" 
+  <div
+    tabindex="0"
+    class="custom-select"
+    [class.open]="isOpen"
+    [class.disabled]="disabled"
     (click)="toggleDropdown()"
+    (keydown)="onKeyDown($event)"
   >
-    <div class="selected-value" [class.placeholder]="!emptyValue">
+    <div class="selected-value" [class.placeholder]="!selectedLabel">
       {{ selectedLabel || 'Choose an option' }}
     </div>
     <mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
 
     <ul class="options-list" *ngIf="isOpen && !disabled">
-      @for(item of items; track item.value) {
+      @for(item of items; let i = $index; track item.value) {
         <li
           class="option"
-          [class.selected]="item.value === emptyValue"
-          (click)="!disabled && selectOption(item)"
+          [class.selected]="item.value === selectedValue"
+          [class.focused]="focusedIndex === i"
+          (click)="selectOption(item)"
         >
           <span class="option-content">
-            @if(item.value === emptyValue) {
+            @if(item.value === selectedValue) {
               <mat-icon class="icon-check visible">check</mat-icon>
             }
             {{ item.label }}
