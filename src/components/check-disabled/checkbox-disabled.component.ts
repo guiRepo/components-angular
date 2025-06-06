@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -9,6 +9,11 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './checkbox-disabled.component.css'
 })
 export class CheckBoxDisabledComponent {
-  @Input() disabled: boolean = false;
-  checked: boolean = true;
+  @Input() label!: string;
+  @Output() checked = new EventEmitter<{ label: string; value: boolean }>();
+  checkValue: boolean = false;
+
+  public onCheckboxChange(): void {
+    this.checked.emit({ label: this.label, value: this.checkValue });
+  }
 }

@@ -2,7 +2,6 @@ import { Component, HostListener, ElementRef, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-
 interface ItemsList {
   value: string,
   label: string
@@ -14,27 +13,27 @@ interface ItemsList {
   styleUrl: './select.component.css'
 })
 export class SelectComponent {
-@Input() disabled: boolean = false;
-@Input() items!: Array<ItemsList>;
-emptyValue: string = '';
-selectedLabel: string = '';
-isOpen: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() items!: Array<ItemsList>;
+  emptyValue: string = '';
+  selectedLabel: string = '';
+  isOpen: boolean = false;
 
 constructor (private elementRef: ElementRef) {}
 
-toggleDropdown() {
-  if(!this.disabled) 
-    this.isOpen = !this.isOpen;
-}
+  public toggleDropdown(): void {
+    if(!this.disabled) 
+      this.isOpen = !this.isOpen;
+  }
 
-selectOption(item: { value: string; label: string }) {
-  this.emptyValue = item.value;
-  this.selectedLabel = item.label;
-  this.isOpen = false;
-}
+  public selectOption(item: { value: string; label: string }): void {
+    this.emptyValue = item.value;
+    this.selectedLabel = item.label;
+    this.isOpen = false;
+  }
 
   @HostListener('document:click', ['$event'])
-  handleClickOutside(event: MouseEvent): void {
+  public handleClickOutside(event: MouseEvent): void {
     const clickedInside = this.elementRef.nativeElement.contains(event.target);
     if (!clickedInside) {
       this.isOpen = false;

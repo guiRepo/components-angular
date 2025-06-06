@@ -1,12 +1,6 @@
 <div class="select-container">
   <label class="label">Select</label>
-
-  <div 
-    class="custom-select" 
-    [class.open]="isOpen" 
-    [class.disabled]="disabled" 
-    (click)="toggleDropdown()"
-  >
+  <div tabindex="0" class="custom-select" [class.open]="isOpen" [class.disabled]="disabled" (click)="toggleDropdown()">
     <div class="selected-value" [class.placeholder]="!emptyValue">
       {{ selectedLabel || 'Choose an option' }}
     </div>
@@ -14,15 +8,9 @@
 
     <ul class="options-list" *ngIf="isOpen && !disabled">
       @for(item of items; track item.value) {
-        <li
-          class="option"
-          [class.selected]="item.value === emptyValue"
-          (click)="!disabled && selectOption(item)"
-        >
+        <li class="option" [class.selected]="item.value === emptyValue" (click)="!disabled && selectOption(item)">
           <span class="option-content">
-            @if(item.value === emptyValue) {
-              <mat-icon class="icon-check visible">check</mat-icon>
-            }
+            @if(item.value === emptyValue) { <mat-icon class="icon-check visible">check</mat-icon> }
             {{ item.label }}
           </span>
         </li>
