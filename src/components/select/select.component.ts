@@ -1,8 +1,12 @@
-import { Component, HostListener, ElementRef } from '@angular/core';
+import { Component, HostListener, ElementRef, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
+interface ItemsList {
+  value: string,
+  label: string
+}
 @Component({
   selector: 'select-component',
   imports: [MatIconModule, FormsModule, CommonModule],
@@ -10,17 +14,11 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './select.component.css'
 })
 export class SelectComponent {
+@Input() disabled: boolean = false;
+@Input() items!: Array<ItemsList>;
 emptyValue: string = '';
 selectedLabel: string = '';
 isOpen: boolean = false;
-disabled: boolean = true;
-
-
-listItems = [
-  { value: 'option1', label: 'Option One' },
-  { value: 'option2', label: 'Option Two' },
-  { value: 'option3', label: 'Option Three' },
-];
 
 constructor (private elementRef: ElementRef) {}
 

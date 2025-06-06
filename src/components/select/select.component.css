@@ -114,3 +114,14 @@
 .icon-check.visible {
   visibility: visible;
 }
+
+.custom-select.disabled {
+  background-color: #d3d3dc;
+  border: 1px solid #c2c2c9;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.custom-select.disabled .selected-value {
+  pointer-events: none;
+}
