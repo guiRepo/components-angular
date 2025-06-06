@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-
-
 
 @Component({
   selector: 'switch-component',
@@ -11,6 +9,6 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './switch.component.css'
 })
 export class SwitchComponent {
+  @Input() disabled: boolean = false;
   checked: boolean = true;
-  disabled: boolean = true;
 }

@@ -1,8 +1,16 @@
 <div class="main-container">
   <div class="select-container">
-    <select-component />
+    <div class="disabled-container">
+      <label for="desabilitar">Desabilitar select</label>
+      <input type="checkbox" name="des" id="des" [(ngModel)]="checkedSelect">
+    </div>
+    <select-component [disabled]="checkedSelect" [items]="listItems"/>
   </div>
   <div class="switch-container">
-    <switch-component />
+    <div class="disabled-container">
+      <label for="desabilitar">Desabilitar switch</label>
+      <input type="checkbox" name="desabilitar" id="desabilitar" [(ngModel)]="checkedSwitch">
+    </div>
+    <switch-component [disabled]="checkedSwitch"/>
   </div>
 </div>
