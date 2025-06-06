@@ -1,0 +1,11 @@
+<div class="switch-container">
+  <label class="label">Switch</label>
+  <label class="switch" [class.checked]="checked" [class.disabled]="disabled">
+    <input type="checkbox" [(ngModel)]="checked" [disabled]="disabled"/>
+    <span class="slider">
+      @if (checked) {
+        <mat-icon class="icon" mat-icon>check</mat-icon>
+      }
+    </span>
+  </label>
+</div>
